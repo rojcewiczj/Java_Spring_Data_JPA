@@ -2,12 +2,18 @@ package com.example.Spring_Data_JPA.models;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 
 @Entity(name="Student")
+@Table(
+    name = "student"
+    )
 public class Student {
     @Id
     @SequenceGenerator(
@@ -19,14 +25,38 @@ public class Student {
         strategy = SEQUENCE,
         generator = "student_sequence"
     )
+    @Column(
+        name = "id",
+        updatable = false
+    )
     private Long id;
+    @Column(
+        name = "first_name",
+        nullable = false,
+        columnDefinition = "TEXT"
+    )
     private String firstName;
+    @Column(
+        name = "last_name",
+        nullable = false,
+        columnDefinition = "TEXT"
+    )
     private String lastName;
+    @Column(
+        name = "email",
+        nullable = false,
+        columnDefinition = "TEXT"
+    )
     private String email;
+    @Column(
+        name = "age",
+        nullable = false
+
+    )
     private Integer age; 
     
-    public Student(Long id, String firstName, String lastName, String email, Integer age) {
-        this.id = id;
+    public Student(String firstName, String lastName, String email, Integer age) {
+        
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
